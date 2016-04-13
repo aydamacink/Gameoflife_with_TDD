@@ -4,6 +4,7 @@ class Grid
   # dimensional array of dimensions width and height of the value false.
   def initialize(width = 10, height = 10)
     @cells = Array.new(width) { Array.new(height, false) }
+    # @cells = Array.new(4) { Array.new(3, false) } for testing irb
   end
 
   # Sets the state of a given cell (live is a boolean variable) and updates the
@@ -15,10 +16,16 @@ class Grid
   # returns if the cell at the given coordinates lives in the current grid.
   # To do this, it checks our @cells instance variable (getter method)
   def live?(x, y)
-    @cells[x][y]
+  puts  @cells[x][y]
   end
 
   # Add a method to randomize
+  def randomize
+    # iterate over each elementof the multidimensional array &
+    # set it = to[true, false].sample
+  end
+
+
 
   # prints the current grid to the console
   def print
@@ -44,7 +51,16 @@ class Grid
 
   # returns the number
   # of living neighbours that the cell at the given coordinates has.
-  def neighbours(x, y)
-    number = ' '
-  end
+  # def neighbours(x, y)
+  #   number = ' '
+  # end
 end
+
+grid = Grid.new(4,3)
+# grid.set_cell(1,2,true)
+# grid.set_cell(0,0,true)
+# grid.live?(0,0)
+# grid.print
+# grid.live?(0,1)
+grid.randomize
+grid.print
