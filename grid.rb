@@ -1,4 +1,5 @@
 class Grid
+  # attr_accessor :width, :height
 
   # This method should initialize an instance variable @cells with a two
   # dimensional array of dimensions width and height of the value false.
@@ -21,8 +22,13 @@ class Grid
 
   # Add a method to randomize
   def randomize
-    # iterate over each elementof the multidimensional array &
-    # set it = to[true, false].sample
+    # iterate over each element of the multidimensional array & modifies
+    # it by setting it randomly to true or false
+    @cells.length.times do |x|
+      @cells[x].length.times do |y|
+        @cells[x][y] = [true, false].sample
+      end
+    end
   end
 
 
