@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require_relative 'gol'
 
 class TestGrid < MiniTest::Test
+
   def test_set_cell
     # given
     grid = Grid.new
@@ -56,17 +57,18 @@ class TestGrid < MiniTest::Test
     assert_equal 8, grid.neighbours(1,1)
   end
 
-  def test_neighbours_for_border_cells
+  def test_neighbours_for_border_cells_on_west
 
     grid = Grid.new
-    grid.set_cell(1, 1,true) #east
+    grid.set_cell(1, 1, true) #east
     grid.set_cell(0, 2, true) #south
     grid.set_cell(0, 0, true) #north
     grid.set_cell(1, 0, true) #ne
-    grid.set_cell(1, 2, true) #se
-    assert_equal 5, grid.neighbours(0, 1)
-    # assert_equal 2, grid.neighbours(1, 2)
+    # grid.set_cell(1, 2, true) #se
+    assert_equal 4, grid.neighbours(0, 1)
   end
+
+
 
 
     # grid.set_cell(0, 1, true)

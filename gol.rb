@@ -62,8 +62,9 @@ class Grid
     if @cells[x-1][y+1]  && y < (@cells[0].length - 1) #southwest
       @neighbours_count += 1
     end
-    if @cells[x+1][y+1]  && y < (@cells[0].length - 1) #southeast
+    if @cells[x+1][y+1] && (y < (@cells[0].length - 1)) #southeast
       @neighbours_count += 1
+    else @neighbours_count = @neighbours_count
     end
   end
 
