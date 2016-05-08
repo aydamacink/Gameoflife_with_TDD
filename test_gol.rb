@@ -97,6 +97,37 @@ def test_neighbours_for_border_cells_on_south
   assert_equal 3, grid.neighbours(2,2)
 end
 
+def test_corner_case_on_north_west
+  grid = Grid.new
+  grid.set_cell(0, 1, true) #south
+  grid.set_cell(1, 1, true) #southeast
+  grid.set_cell(1, 0, true) #east
+  assert_equal 3, grid.neighbours(0,0)
+end
+
+def test_corner_case_on_south_west
+  grid = Grid.new
+  grid.set_cell(0, 1, true) #north
+  grid.set_cell(1, 1, true) #northeast
+  grid.set_cell(1, 2, true) #east
+  assert_equal 3, grid.neighbours(0,2)
+end
+
+def test_corner_case_on_north_east
+  grid = Grid.new
+  grid.set_cell(2, 0, true) #west
+  grid.set_cell(3, 1, true) #south
+  grid.set_cell(2, 1, true) #southwest
+  assert_equal 3, grid.neighbours(3,0)
+end
+
+def test_corner_case_on_south_east
+  grid = Grid.new
+  grid.set_cell(2, 2, true) #west
+  grid.set_cell(3, 1, true) #north
+  grid.set_cell(2, 1, true) #northwest
+  assert_equal 3, grid.neighbours(3,2)
+end
 
     # grid.set_cell(0, 1, true)
     # grid.set_cell(1, 2, true)
