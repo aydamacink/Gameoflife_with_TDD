@@ -78,6 +78,24 @@ def test_neighbours_for_border_cells_on_north
   assert_equal 3, grid.neighbours(2, 0)
 end
 
+def test_neighbours_for_border_cells_on_east
+  grid = Grid.new
+  grid.set_cell(3, 0, true) #north
+  grid.set_cell(3, 2, true) # south
+  grid.set_cell(2, 1, true) # west
+  # grid.set_cell(2, 2, true) # southwest
+  # grid.set_cell(2, 0, true) # northwest
+  assert_equal 3, grid.neighbours(3,1)
+end
+
+def test_neighbours_for_border_cells_on_south
+  grid = Grid.new
+  grid.set_cell(2, 1, true) #north
+  grid.set_cell(1, 1, true) #northwest
+  grid.set_cell(3, 1, true) #northeast
+
+  assert_equal 3, grid.neighbours(2,2)
+end
 
 
     # grid.set_cell(0, 1, true)
