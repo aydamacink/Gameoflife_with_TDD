@@ -68,25 +68,24 @@ class TestGrid < MiniTest::Test
     assert_equal 4, grid.neighbours(0, 4)
   end
 
-# def test_neighbours_for_border_cells_on_north
-#   grid = Grid.new
-#   grid.set_cell(2, 1, true) #south
-#   grid.set_cell(1, 0, true) #west
-#   grid.set_cell(1, 1, true) #southwest
-#   # grid.set_cell(3, 1, true) #southeast
-#   # grid.set_cell(3, 0, true) #east
-#   assert_equal 3, grid.neighbours(2, 0)
-# end
-#
-# def test_neighbours_for_border_cells_on_east
-#   grid = Grid.new
-#   grid.set_cell(3, 0, true) #north
-#   grid.set_cell(3, 2, true) # south
-#   grid.set_cell(2, 1, true) # west
-#   # grid.set_cell(2, 2, true) # southwest
-#   # grid.set_cell(2, 0, true) # northwest
-#   assert_equal 3, grid.neighbours(3,1)
-# end
+def test_neighbours_for_border_cells_on_north
+  grid = Grid.new
+  grid.set_cell(4, 1, true) #south
+  grid.set_cell(3, 0, true) #west
+  grid.set_cell(3, 1, true) #southwest
+  grid.set_cell(5, 1, true) #southeast
+  # grid.set_cell(5, 0, true) #east
+  assert_equal 4, grid.neighbours(4, 0)
+end
+
+def test_neighbours_for_border_cells_on_east
+  grid = Grid.new
+  grid.set_cell(9, 3, true) #north
+  grid.set_cell(9, 5, true) # south
+  grid.set_cell(8, 4, true) # west
+
+  assert_equal 3, grid.neighbours(9,4)
+end
 #
 # def test_neighbours_for_border_cells_on_south
 #   grid = Grid.new

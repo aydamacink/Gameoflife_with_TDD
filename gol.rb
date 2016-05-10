@@ -2,6 +2,19 @@ class Grid
 
   attr_accessor :width, :height, :cells
 
+  Possible_Neighbours =[
+    [-1, -1],
+    [-1, 0],
+    [-1, 1],
+    [0, 1],
+    [1, 1],
+    [1, 0],
+    [1, -1],
+    [0, -1]
+  ]
+
+
+
   def initialize(width = 10, height = 10)
     @width = width
     @height = height
@@ -11,11 +24,13 @@ class Grid
   def live?(x, y)
     @cells[x][y]
   end
+  #primitive obsession: do not check with a boolean, or a primitive data type, think about
+  #rendering ->  I will have to say if its nil don't do anything, if its true do this, if its false (which is close to nil -> danger) do this
+  #dojo: implement in different ways to improve abilities - note to self: do it with a cell object
 
   def set_cell(x, y, live)
     @cells[x][y] = live
   end
-
 
   def print
     puts print_as_string
@@ -38,34 +53,28 @@ class Grid
     result
   end
 
+  Possible_Neighbours =[
+    [-1, -1],
+    [-1, 0],
+    [-1, 1],
+    [0, 1],
+    [1, 1],
+    [1, 0],
+    [1, -1],
+    [0, -1]
+  ]
+# current_cell refers to the current cell being examined to see if it is a neighbour or not.
+
   def neighbours(x, y)
-    @neighbours_count = 0
+    neighbours_count = 0
 
-    if @cells[x][y-1]  # north
-      @neighbours_count += 1
+    Possible_Neighbours.each do |array|
+      current_cell= (@cells[x + array[0]] || [])[y + array[1]] # this trick is called nil guard: here we do it for x
+      if current_cell != nil && current_cell # and here we ensure that the y is not equal to nil
+        neighbours_count += 1
+      end
+
     end
-    if @cells[x][y+1] && (y < (@cells[0].length - 1)) # south
-      @neighbours_count += 1
-    end
-    if @cells[x-1][y] # west
-      @neighbours_count += 1
-    end
-    if @cells[x+1][y] # east
-      @neighbours_count += 1
-    end
-    if @cells[x-1][y-1] # northwest
-      @neighbours_count += 1
-    end
-    if @cells[x+1][y-1] # northeast
-      @neighbours_count += 1
-    end
-    if @cells[x-1][y+1]  && y < (@cells[0].length - 1) #southwest
-      @neighbours_count += 1
-    end
-    if @cells[x+1][y+1] && (y < (@cells[0].length - 1)) #southeast
-      @neighbours_count += 1
-    else @neighbours_count = @neighbours_count
-    end
+    neighbours_count
   end
-
 end
