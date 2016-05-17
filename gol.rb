@@ -53,16 +53,6 @@ class Grid
     result
   end
 
-  Possible_Neighbours =[
-    [-1, -1],
-    [-1, 0],
-    [-1, 1],
-    [0, 1],
-    [1, 1],
-    [1, 0],
-    [1, -1],
-    [0, -1]
-  ]
 # current_cell refers to the current cell being examined to see if it is a neighbour or not.
 
   def neighbours(x, y)
@@ -70,11 +60,17 @@ class Grid
 
     Possible_Neighbours.each do |array|
       current_cell= (@cells[x + array[0]] || [])[y + array[1]] # this trick is called nil guard: here we do it for x
-      if current_cell != nil && current_cell # and here we ensure that the y is not equal to nil
+      # and here we ensure that the y is not equal to nil
+      if (current_cell != nil && current_cell)  #&& (x != nil && y != nil)
         neighbours_count += 1
+      # else
+        # neighbours_count = neighbours_count
       end
 
     end
+
     neighbours_count
+
   end
+
 end
