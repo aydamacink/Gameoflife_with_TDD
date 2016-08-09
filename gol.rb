@@ -41,7 +41,7 @@ class Grid
         end
       end
     end
-    
+
   def print
     puts print_as_string
   end
@@ -95,6 +95,7 @@ grid = Grid.new
 # puts grid.neighbours(1, 1)
 # puts grid.neighbours(0, 2)
 grid.set_cell(9, 3, true) # north
-grid.set_cell(9, 5, true) # south
-grid.set_cell(8, 4, true)
-puts grid.neighbours(11, 30)
+puts grid.live?(9, 3)
+# grid.set_cell(9, 5, true) # south
+# grid.set_cell(8, 4, true)
+# puts grid.neighbours(11, 30)

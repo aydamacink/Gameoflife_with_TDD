@@ -7,29 +7,59 @@ class TestGrid < MiniTest::Test
 # test case for overpopulation, test case for resurrection and test case for staying alive_neighbours
 #be careful two different rules can col(glide with a proper size it can be avoided
 # for each test set a new grid
-  def test_live_in_next_grid?
-    # grid = Grid.new(3, 3)
-    # grid.set_cell(1, 1, true)
-    game = Game.new
-    assert_equal false, game.live_in_next_grid?(true, 1)
+  def test_for_cell_dying
+     game = Game.new
+     grid = Grid.new(80, 60)
+     grid.set_cell(1, 1, true) # cell to be tested
+     grid.set_cell(2, 0, true) # neighbour 1
+     live = grid.live?(1, 1)
+     live_neighbours = grid.neighbours(1,1)
+
+     assert_equal false, game.live_in_next_grid?(live, live_neighbours)
   end
 
   def test_for_cell_staying_alive
     game = Game.new
-    # grid = Grid.new(10, 10)
-    assert_equal true, game.live_in_next_grid?(true, 3)
+    grid = Grid.new(80, 60)
+    grid.set_cell(1, 1, true) #cell to be tested
+    grid.set_cell(2, 0, true) # neighbour 1
+    grid.set_cell(2, 1, true) # neighbour 2
+    grid.set_cell(2, 2, true) # neighbour 3
+    live = grid.live?(1, 1)
+    live_neighbours = grid.neighbours(1,1)
+
+    assert_equal true, game.live_in_next_grid?(live, live_neighbours)
   end
 
   def test_for_overpopulation
     game = Game.new
-    # grid = Grid.new(10, 10)
-    assert_equal false, game.live_in_next_grid?(true, 4)
+    grid = Grid.new(80, 60)
+    grid.set_cell(1, 1, true) #cell to be tested
+    grid.set_cell(2, 0, true) # neighbour 1
+    grid.set_cell(2, 1, true) # neighbour 2
+    grid.set_cell(2, 2, true) # neighbour 3
+    grid.set_cell(1, 0, true) # neighbour 4
+    live = grid.live?(1, 1)
+    live_neighbours = grid.neighbours(1,1)
+
+    assert_equal false, game.live_in_next_grid?(live, live_neighbours)
   end
 
   def test_for_resurrection
     game = Game.new
-    # grid = Grid.new(10, 10)
-    assert_equal true, game.live_in_next_grid?(false, 3)
+    grid = Grid.new(80, 60)
+    grid.set_cell(2, 0, true) # neighbour 1
+    grid.set_cell(2, 1, true) # neighbour 2
+    grid.set_cell(2, 2, true) # neighbour 3
+    live = grid.live?(1, 1)
+    live_neighbours = grid.neighbours(1,1)
+    
+    assert_equal true, game.live_in_next_grid?(live, live_neighbours)
   end
+
+  # def test_step
+  #
+  #
+  # end
 
 end

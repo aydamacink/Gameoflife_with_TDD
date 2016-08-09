@@ -30,8 +30,9 @@ class Game
  end
 # method that iterates over each item
   def step
-    @grid = Grid.new(80, 60)
+    grid = Grid.new(80, 60)
     
+
     # access board and iterate over each cell and call to see if it should be resurrected or killed
     # Method step() makes a new grid from the current one and assigns it to @grid. To do so, you instantiate a new Grid with the same width and height as the current one and assign it to a local variable.
     #
@@ -41,6 +42,7 @@ class Game
     # use these two results to calculate if the cell should live in the new grid (use the existing Grid method for this). Store this as a boolean, true/false
     # assign this boolean to the cell at (x,y) in the new grid (use the existing Grid method for this).
     # After that you assign your new grid to @grid, thereby making it the current one.
+    @grid = grid
   end
 
   def start
