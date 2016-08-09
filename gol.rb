@@ -32,6 +32,16 @@ class Grid
     @cells[x][y] = live
   end
 
+    # iterate over each element of the multidimensional array & modifies
+    # it by setting it randomly to true or false
+    def randomize
+      @cells.length.times do |x|
+        @cells[x].length.times do |y|
+          @cells[x][y] = [true, false].sample
+        end
+      end
+    end
+    
   def print
     puts print_as_string
   end

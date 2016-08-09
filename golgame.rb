@@ -34,5 +34,5 @@ attr_accessor :grid
   end
 end
 
-game = Game.new
-game.grid.print
+# game = Game.new
+# game.grid.print
