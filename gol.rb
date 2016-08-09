@@ -74,3 +74,17 @@ class Grid
   end
 
 end
+
+grid = Grid.new
+# grid.set_cell(0, 0, true)
+# grid.set_cell(0, 1, true)
+# grid.set_cell(1, 2, true)
+# puts grid.live_cells_at(0, 0)
+# puts grid.live_cells_at(1, 2)
+# puts grid.live_cells_at(11, 1)
+# puts grid.neighbours(1, 1)
+# puts grid.neighbours(0, 2)
+grid.set_cell(9, 3, true) # north
+grid.set_cell(9, 5, true) # south
+grid.set_cell(8, 4, true)
+puts grid.neighbours(11, 30)

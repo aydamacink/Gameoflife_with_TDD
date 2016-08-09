@@ -1,9 +1,12 @@
+require_relative 'gol'
+
 class Game
 attr_accessor :grid
 
   def initialize
-    self.grid = Grid.new
-    #@grid = Grid.new
+    self.grid = Grid.new(80, 60)
+    #@grid = Grid.new - Its the same
+    grid.randomize
   end
 
   def live_in_next_grid?(live, live_neighbours)
@@ -22,9 +25,14 @@ attr_accessor :grid
     end
   end
   # don't test this method, execute something and then test - > integration test.
-
+ def clear_screen
+   puts "\e[H\e[2J"
+ end
 # method that iterates over each item
-  def tick
+  def step
     # access board and iterate over each cell and call to see if it should be resurrected or killed
   end
 end
+
+game = Game.new
+game.grid.print
