@@ -137,7 +137,7 @@ class TestGrid < MiniTest::Test
       grid = Grid.new
       grid.set_cell(0,1, true)
 
-      assert_equal 0, grid.neighbours(11,30)
+      assert_equal 0, grid.neighbours(11,30) #How to raise an exception?
 
     end
 # # make a test for a wrong input like (11,30) way out of range
