@@ -14,4 +14,22 @@ class TestGrid < MiniTest::Test
     assert_equal false, game.live_in_next_grid?(true, 1)
   end
 
+  def test_for_cell_staying_alive
+    game = Game.new
+    # grid = Grid.new(10, 10)
+    assert_equal true, game.live_in_next_grid?(true, 3)
+  end
+
+  def test_for_overpopulation
+    game = Game.new
+    # grid = Grid.new(10, 10)
+    assert_equal false, game.live_in_next_grid?(true, 4)
+  end
+
+  def test_for_resurrection
+    game = Game.new
+    # grid = Grid.new(10, 10)
+    assert_equal true, game.live_in_next_grid?(false, 3)
+  end
+
 end
