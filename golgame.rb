@@ -3,10 +3,10 @@ require_relative 'gol'
 class Game
  attr_accessor :grid
 
-  def initialize
-    self.grid = Grid.new(80, 60)
+  def initialize(grid = Grid.new(80, 60), randomize: true)
+    self.grid = Grid.new(x, y)
     #@grid = Grid.new - Its the same
-    grid.randomize
+    grid.randomize if randomize
   end
 
   def live_in_next_grid?(live, live_neighbours)
@@ -31,7 +31,7 @@ class Game
 # method that iterates over each item
   def step
     grid = Grid.new(80, 60)
-    
+
 
     # access board and iterate over each cell and call to see if it should be resurrected or killed
     # Method step() makes a new grid from the current one and assigns it to @grid. To do so, you instantiate a new Grid with the same width and height as the current one and assign it to a local variable.

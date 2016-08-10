@@ -42,6 +42,10 @@ class Grid
       end
     end
 
+  # def ==(other)
+  #
+  # end
+
   def print
     puts print_as_string
   end
