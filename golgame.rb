@@ -4,7 +4,7 @@ class Game
  attr_accessor :grid
 
   def initialize(grid = Grid.new(80, 60), randomize: true)
-    self.grid = Grid.new(x, y)
+    self.grid = Grid.new
     #@grid = Grid.new - Its the same
     grid.randomize if randomize
   end
@@ -30,7 +30,7 @@ class Game
  end
 # method that iterates over each item
   def step
-    grid = Grid.new(80, 60)
+    grid = Grid.new(10, 10)
 
 
     # access board and iterate over each cell and call to see if it should be resurrected or killed

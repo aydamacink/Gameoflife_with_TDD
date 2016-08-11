@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require_relative 'gol'
 
-class TestGrid < MiniTest::Test
+class TestGrid  < Minitest::Unit::TestCase 
 
   def test_set_cell
     # given
