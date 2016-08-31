@@ -42,9 +42,10 @@ class Grid
       end
     end
 
-  # def ==(other)
-  #
-  # end
+  def ==(other)
+      self.cells == other.cells
+  #Should iterate through the self cells and compare them with the corresponding cells from other
+  end
 
   def print
     puts print_as_string
