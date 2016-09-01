@@ -1,7 +1,7 @@
 require_relative 'gol'
 require 'pry'
 class Game
-    attr_accessor :grid,
+    attr_accessor :grid
 
     def initialize(grid = Grid.new(10, 10), randomize: true)
         self.grid = Grid.new
@@ -30,17 +30,18 @@ class Game
     end
     # method that iterates over each item
 
-    # access board and iterate over each cell and call to see if it should be resurrected or killed, set each cell of new grid to its new state. 
+    # access board and iterate over each cell and call to see if it should be resurrected or killed, set each cell of new grid to its new state.
     def step
-        grid = Grid.new
-        self.grid.cells.each_with_index do |row, y|
-            row.each_with_index do |cell, x|
+        new_grid = Grid.new
+        self.grid.cells.each_with_index do |row, x|
+            row.each_with_index do |cell, y|
                 state = self.grid.live?(x, y)
                 neighbours = self.grid.neighbours(x, y)
                 next_state = live_in_next_grid?(state, neighbours) # it should be a boolean
-                @grid.set_cell(x, y ,next_state)
+                new_grid.set_cell(x, y, next_state)
             end
         end
+        @grid = new_grid
     end
 
 
@@ -75,7 +76,7 @@ end
     game.grid.set_cell(3, 1, true) # cell to overpopulate and make (2,1) die
     game.grid.set_cell(4, 0, true) # cell to make (3,0) resurrect
     game.grid.print
-    # puts game.live_in_next_grid?(true, 3)
-    # puts game.grid.neighbours(1,1)
+    puts game.live_in_next_grid?(true, 3)
+    puts game.grid.neighbours(1,1)
     game.step
     game.grid.print
