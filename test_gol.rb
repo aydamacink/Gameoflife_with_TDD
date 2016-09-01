@@ -160,21 +160,33 @@ class TestGrid  < Minitest::Unit::TestCase
         grid1.set_cell(1,0, true)
         grid2 = Grid.new
         grid2.set_cell(0,0, true)
-        grid2.set_cell(0,2, true)
+        grid2.set_cell(0,1, true)
         grid2.set_cell(0,2, true)
         grid2.set_cell(1,0, true)
         assert_equal grid1, grid2
     end
-    #
-    # def test_for_equality_of_two_unequal_grids_one_alive_one_dead
-    #
-    # end
-    #
-    # def test_for_equality_of_two_grids_with_some_alive_cells_each
-    #
-    # end
-    #
-    # def test_for_equality_of_two_unequal_grids_with_some_alive_cells_each
-    #
-    # end
+
+    def test_for_equality_of_two_unequal_grids_one_alive_one_dead
+        grid1 = Grid.new
+        grid2 = Grid.new
+        grid2.set_cell(0,0, true)
+        grid2.set_cell(0,1, true)
+        grid2.set_cell(0,2, true)
+        grid2.set_cell(1,0, true)
+        refute_equal grid1, grid2
+    end
+
+    def test_for_equality_of_two_unequal_grids_with_some_alive_cells_each
+        grid1 = Grid.new
+        grid1.set_cell(0,0, true)
+        grid1.set_cell(0,1, true)
+        grid1.set_cell(0,2, true)
+        grid1.set_cell(1,0, true)
+        grid2 = Grid.new
+        grid2.set_cell(0,0, true)
+        grid2.set_cell(1,0, true)
+        grid2.set_cell(2,0, true)
+        grid2.set_cell(0,1, true)
+        refute_equal grid1, grid2
+    end
 end
