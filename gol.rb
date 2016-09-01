@@ -1,106 +1,93 @@
 class Grid
 
-  attr_accessor :width, :height, :cells
+    attr_accessor :width, :height, :cells
 
-  Possible_Neighbours =[
-    [-1, -1],
-    [-1, 0],
-    [-1, 1],
-    [0, 1],
-    [1, 1],
-    [1, 0],
-    [1, -1],
-    [0, -1]
-  ]
+    Possible_Neighbours =[
+        [-1, -1],
+        [-1, 0],
+        [-1, 1],
+        [0, 1],
+        [1, 1],
+        [1, 0],
+        [1, -1],
+        [0, -1]
+    ]
 
+    def initialize(width = 10, height = 10)
+        @width = width
+        @height = height
+        @cells = Array.new(width) { Array.new(height, false) }
+    end
 
+    def live?(x, y)
+        @cells[x][y]
+    end
 
-  def initialize(width = 10, height = 10)
-    @width = width
-    @height = height
-    @cells = Array.new(width) { Array.new(height, false) }
-  end
-
-  def live?(x, y)
-    @cells[x][y]
-  end
-  #primitive obsession: do not check with a boolean, or a primitive data type, think about
-  #rendering ->  I will have to say if its nil don't do anything, if its true do this, if its false (which is close to nil -> danger) do this
-  #dojo: implement in different ways to improve abilities - note to self: do it with a cell object
-
-  def set_cell(x, y, live)
-    @cells[x][y] = live
-  end
+    def set_cell(x, y, live)
+        @cells[x][y] = live
+    end
 
     # iterate over each element of the multidimensional array & modifies
     # it by setting it randomly to true or false
     def randomize
-      @cells.length.times do |x|
-        @cells[x].length.times do |y|
-          @cells[x][y] = [true, false].sample
+        @cells.length.times do |x|
+            @cells[x].length.times do |y|
+                @cells[x][y] = [true, false].sample
+            end
         end
-      end
     end
 
-  def ==(other)
-      self.cells == other.cells
-  #Should iterate through the self cells and compare them with the corresponding cells from other
-  end
+    #Compares the self.cells with the other.cells
+    def ==(other)
+        self.cells == other.cells
+    end
 
-  def print
-    puts print_as_string
-  end
+    #Allows access to coordinates from the grid
+    def print
+        puts print_as_string
+    end
 
-  def print_as_string
-    result = ''
-
-    @height.times do |y|
-      @width.times do |x|
-        if live?(x, y)
-          result << 'X'
-        else
-          result << ' '
+    def print_as_string
+        result = ''
+        @height.times do |y|
+            @width.times do |x|
+                if live?(x, y)
+                    result << 'X'
+                else
+                    result << ' '
+                end
+            end
+            result << "\n"
         end
-      end
-      result << "\n"
+        result
     end
+    # current_cell refers to the current cell being examined to see if it is a neighbour or not.
+    def neighbours(x, y)
+        neighbours_count = 0
 
-    result
-  end
-
-# current_cell refers to the current cell being examined to see if it is a neighbour or not.
-
-  def neighbours(x, y)
-    neighbours_count = 0
-
-    Possible_Neighbours.each do |array|
-      current_cell= (@cells[x + array[0]] || [])[y + array[1]] # this trick is called nil guard: here we do it for x
-      # and here we ensure that the y is not equal to nil
-      if (current_cell != nil && current_cell)  #&& (x != nil && y != nil)
-        neighbours_count += 1
-      # else
-        # neighbours_count = neighbours_count
-      end
-
+        Possible_Neighbours.each do |array|
+            current_cell= (@cells[x + array[0]] || [])[y + array[1]] # this trick is called nil guard: here we do it for x
+            # and here we ensure that the y is not equal to nil
+            if (current_cell != nil && current_cell)  #&& (x != nil && y != nil)
+                neighbours_count += 1
+            end
+        end
+        neighbours_count
     end
-
-    neighbours_count
-
-  end
-
 end
 
-grid = Grid.new
+# grid = Grid.new
 # grid.set_cell(0, 0, true)
 # grid.set_cell(0, 1, true)
 # grid.set_cell(1, 2, true)
-# puts grid.live_cells_at(0, 0)
-# puts grid.live_cells_at(1, 2)
-# puts grid.live_cells_at(11, 1)
-# puts grid.neighbours(1, 1)
-# puts grid.neighbours(0, 2)
-grid.set_cell(9, 3, true) # north
-puts grid.live?(9, 3)
+# # puts grid.live_cells_at(0, 0)
+# # puts grid.live_cells_at(1, 2)
+# # puts grid.live_cells_at(11, 1)
+# # puts grid.neighbours(1, 1)
+# # puts grid.neighbours(0, 2)
+# grid.set_cell(9, 3, true) # north
+# puts grid.live?(9, 3)
 # grid.set_cell(9, 5, true) # south
 # grid.set_cell(8, 4, true)
-# puts grid.neighbours(11, 30)
+# # puts grid.neighbours(11, 30)
+# grid.print
