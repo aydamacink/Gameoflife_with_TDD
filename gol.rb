@@ -76,7 +76,8 @@ class Grid
     end
 end
 
-# grid = Grid.new
+grid = Grid.new
+grid.randomize
 # grid.set_cell(0, 0, true)
 # grid.set_cell(0, 1, true)
 # grid.set_cell(1, 2, true)
@@ -90,4 +91,4 @@ end
 # grid.set_cell(9, 5, true) # south
 # grid.set_cell(8, 4, true)
 # # puts grid.neighbours(11, 30)
-# grid.print
+grid.print
