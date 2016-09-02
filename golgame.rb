@@ -3,8 +3,8 @@ require 'pry'
 class Game
     attr_accessor :grid
 
-    def initialize(grid = Grid.new(10, 10), randomize: true)
-        self.grid = Grid.new
+    def initialize(grid = Grid.new(80, 60), randomize: true)
+        @grid = grid
         #@grid = Grid.new - Its the same
         grid.randomize if randomize
     end
@@ -32,7 +32,7 @@ class Game
 
     # access board and iterate over each cell and call to see if it should be resurrected or killed, set each cell of new grid to its new state.
     def step
-        new_grid = grid
+        new_grid = grid.blank
         self.grid.cells.each_with_index do |row, x|
             row.each_with_index do |cell, y|
                 state = self.grid.live?(x, y)
@@ -46,50 +46,13 @@ class Game
 
     def start
         while true do
+            clear_screen
             grid.print
             sleep(1)
             step
         end
     end
-    # Method start() that does the following in an endless loop:
-    #
-    #     clear the screen
-    #     print the current grid to the console
-    #     wait 1 second (code: sleep(1))
-    #     make a step() (makes a new grid from the current one and assigns it to @grid.)
-
-
 end
 
 
-    # game = Game.new
-    # game.grid = Grid.new(3, 3)
-    # game.grid.set_cell(1, 1, true)
-    # game.grid.set_cell(1, 0, true)
-    # game.grid.set_cell(1, 2, true)
-    # game.grid.set_cell(2, 1, true)
-    # # puts game.live_in_next_grid?(false, 3)
-    # game.grid.print
-    #
-    # game = Game.new
-    # game.grid = Grid.new
-
-
-    # game.grid.set_cell(1, 1, true) #cell to be tested as staying alive
-    # game.grid.set_cell(2, 0, true) # neighbour 1
-    # game.grid.set_cell(2, 1, true) # neighbour 2 and will die because of overpopulation
-    # game.grid.set_cell(2, 2, true) # neighbour 3
-    # game.grid.set_cell(1, 3, true) # cell to be tested for dying with only 1 neighbour (2,2)
-    # game.grid.set_cell(3, 1, true) # cell to overpopulate and make (2,1) die
-    # game.grid.set_cell(4, 0, true) # cell to make (3,0) resurrect
-    # game.grid.print
-    # puts game.live_in_next_grid?(true, 3)
-    # puts game.grid.neighbours(1,1)
-    # game.step
-    # game.grid.print
-
-     Game.new.start
-
-    # game = Game.new
-    # game.grid.print
-    # puts "-------"
+Game.new.start

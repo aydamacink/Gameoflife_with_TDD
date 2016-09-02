@@ -13,7 +13,7 @@ class Grid
         [0, -1]
     ]
 
-    def initialize(width = 10, height = 10)
+    def initialize(width = 80, height = 60)
         @width = width
         @height = height
         @cells = Array.new(width) { Array.new(height, false) }
@@ -42,7 +42,11 @@ class Grid
         self.cells == other.cells
     end
 
-    #Allows access to coordinates from the grid
+
+    def blank
+        self.class.new(width, height)
+    end
+
     def print
         puts print_as_string
     end
@@ -78,17 +82,4 @@ end
 
 grid = Grid.new
 grid.randomize
-# grid.set_cell(0, 0, true)
-# grid.set_cell(0, 1, true)
-# grid.set_cell(1, 2, true)
-# # puts grid.live_cells_at(0, 0)
-# # puts grid.live_cells_at(1, 2)
-# # puts grid.live_cells_at(11, 1)
-# # puts grid.neighbours(1, 1)
-# # puts grid.neighbours(0, 2)
-# grid.set_cell(9, 3, true) # north
-# puts grid.live?(9, 3)
-# grid.set_cell(9, 5, true) # south
-# grid.set_cell(8, 4, true)
-# # puts grid.neighbours(11, 30)
 grid.print
